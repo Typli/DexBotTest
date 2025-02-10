@@ -7,7 +7,6 @@ import os
 CONFIG_FILE = "config.json"  # Конфигурационный файл с API и ID
 LOG_FILE = "log.json"  # Файл с JSON-логами
 
-
 # Функция загрузки конфигурации
 def load_config():
     if os.path.exists(CONFIG_FILE):
@@ -19,7 +18,6 @@ def load_config():
                 print("Ошибка чтения config.json!")
     return None, None
 
-
 # Функция отправки сообщения в Telegram
 def send_message(bot_token, chat_id, text):
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
@@ -30,7 +28,6 @@ def send_message(bot_token, chat_id, text):
     }
     response = requests.post(url, data=payload)
     return response.status_code == 200
-
 
 # Функция обработки JSON-лога
 def watch_log(bot_token, chat_id):
@@ -53,7 +50,6 @@ def watch_log(bot_token, chat_id):
                 except json.JSONDecodeError:
                     print("Ошибка чтения log.json!")
         time.sleep(3)
-
 
 if __name__ == "__main__":
     print("Загрузка конфигурации...")

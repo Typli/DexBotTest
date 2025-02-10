@@ -4,11 +4,10 @@ import subprocess
 import time
 import os
 
-
 app = Flask(__name__)
 
-# HTML-файл
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Получаем путь к папке с `main.py`
+# Путь к HTML файлу
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Получаем путь к папке с `Server.py`
 HTML_PAGE = os.path.join(BASE_DIR, "index.html")  # Формируем полный путь
 
 @app.route("/")
@@ -25,12 +24,11 @@ def start_bots():
     with open("config.json", "w", encoding="utf-8") as f:
         json.dump({"BOT_TOKEN": bot_token, "CHAT_ID": chat_id}, f, indent=4)
 
-    # Запуск DexBot
+    # Запуск DexBot и DexApi на Replit
     subprocess.Popen(["python3", "DexBot.py"])
-    time.sleep(3)  # Ожидание 3 секунды
     subprocess.Popen(["python3", "DexApi.py"])
 
-    return "Боты запущены!"
+    return jsonify({"status": "Боты запущены!"}), 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
