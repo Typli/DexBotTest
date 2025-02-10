@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запуск DexBot</title>
+    <script>
+        function startBots() {
+            const botToken = document.getElementById("botToken").value;
+            const chatId = document.getElementById("chatId").value;
+
+            fetch("/start", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ botToken, chatId })
+            }).then(response => response.text()).then(alert);
+        }
+    </script>
+</head>
+<body>
+    <h2>Настройки DexBot</h2>
+    <label>API бота:</label>
+    <input type="text" id="botToken" placeholder="Введите API бота"><br><br>
+
+    <label>ID чата:</label>
+    <input type="text" id="chatId" placeholder="Введите ID чата или @ник"><br><br>
+
+    <button onclick="startBots()">Запустить</button>
+</body>
+</html>
