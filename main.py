@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 # HTML-файл
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Получаем путь к папке с `Server.py`
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Получаем путь к папке с `main.py`
 HTML_PAGE = os.path.join(BASE_DIR, "index.html")  # Формируем полный путь
 
 @app.route("/")
